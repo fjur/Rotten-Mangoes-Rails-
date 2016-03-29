@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'reviews/new'
+  # get 'reviews/new'
 
-  get 'reviews/create'
+  # get 'reviews/create'
 
   # get 'sessions/new'
 
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   # get 'movies/edit'
 
   # get 'movies/new'
+
+  root to: 'movies#index'
 
   resources :movies do
     resources :reviews, only: [:new, :create]
