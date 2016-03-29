@@ -7,6 +7,6 @@
       <% end %>
     </small>
     <% if current_user && current_user.admin %>
-      <%= link_to "Admin User Management", admin_user_path(current_user) %>
+      <%= link_to "Admin User Management", admin_users_path %>
     <% end %>
   </footer>
