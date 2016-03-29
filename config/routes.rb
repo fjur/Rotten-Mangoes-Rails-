@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   # get 'movies/new'
 
+  # get 'movies/search' => 'movies#'
+
   root to: 'movies#index'
 
   resources :movies do

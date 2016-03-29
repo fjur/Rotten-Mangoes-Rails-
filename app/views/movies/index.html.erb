@@ -3,6 +3,8 @@
 
 <p><%= link_to "Submit a New Movie", new_movie_path %></p>
 <hr>
+<h2>Search for a movie</h2>
+<%= render 'search' %>
 <% @movies.each do |movie| %>
   <h4><%= link_to movie.title, movie_path(movie) %>(<%= link_to "edit", edit_movie_path(movie) %>, <%= link_to "delete", movie_path(movie), :method => :delete, :"data-confirm" => "You sure?" %>)</h4>
   <p><%= movie.director %></p>

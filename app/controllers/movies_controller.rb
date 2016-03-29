@@ -1,7 +1,16 @@
 class MoviesController < ApplicationController
   
+  # require 'pry'
+
+  # def search
+  #   # binding.pry
+  #   # @movies = Movie.search()
+  # end
+
   def index
-    @movies = Movie.all
+    # binding.pry
+    @movies = Movie.search(params)
+    # binding.pry
   end
 
   def show
