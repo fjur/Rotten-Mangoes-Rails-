@@ -15,7 +15,10 @@ class Movie < ActiveRecord::Base
     if release_date.present?
       errors.add(:release_date, "should be in the past") if release_date > Date.today
     end
+  end
 
+  def review_average
+    reviews.sum(:rating_out_of_ten)/reviews.size unless reviews.count == 0
   end
 
 
