@@ -35,33 +35,35 @@ class Movie < ActiveRecord::Base
   # HOW DO I IMPLEMENT OR SEARCHING
   def self.search(search)
     # binding.pry
+
     if search.count > 4
-      if search[:name]
-        @movie = Movie.title_search(search[:title])
-        # @movies = Movie.where("title like ?", "%#{search[:name]}%")
-      end
-        # binding.pry
-      if search[:director]
-          @movies = Movie.director_search(search[:director])
-        # @movies = @movies.where("director like ?", "%#{search[:director]}%")
-      end
+      # if search[:name]
+      #   @movie = Movie.title_search(search[:title])
+      #   # @movies = Movie.where("title like ?", "%#{search[:name]}%")
+      # end
+      #   # binding.pry
+      # if search[:director]
+      #     @movies = Movie.director_search(search[:director])
+      #   # @movies = @movies.where("director like ?", "%#{search[:director]}%")
+      # end
+      # @movies = Movie.where("title LIKE ? OR director LIKE ?", "%#{search[:query]}%", "%#{search[:query]}%")
+      @movies = Movie.where("title LIKE ? OR director LIKE ?", "%#{search[:query]}%", "%#{search[:query]}%")
       if search[:duration]
         if search[:duration] == "Under 90 minutes"
-          @movies = Movie.short(search[:duration])
-          # @movies = @movies.where("runtime_in_minutes < 90")
+          # @movies = Movie.short(search[:duration])
+          @movies = @movies.where("runtime_in_minutes < 90")
         elsif "Between 90 and 120 minutes"
-          @movies = Movie.medium(search[:duration])
-          # @movies = @movies.where("runtime_in_minutes < 120 AND runtime_in_minutes > 90")
+          # @movies = Movie.medium(search[:duration])
+          @movies = @movies.where("runtime_in_minutes < 120 AND runtime_in_minutes > 90")
         else
-          @movies = Movie.long(search[:duration])
-          # @movies = @movies.where("runtime_in_minutes > 120")
-        end
-            
+          # @movies = Movie.long(search[:duration])
+          @movies = @movies.where("runtime_in_minutes > 120")
+        end  
       end
     else
       @movies = Movie.all
     end
   end
-
+  # binding.pry
 
 end
