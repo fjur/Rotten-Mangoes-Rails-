@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/users/debug' => 'users#debug'
+    get '/users/exit_debug' => 'users#exit_debug'
     resources :users
   end
 

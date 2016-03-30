@@ -13,7 +13,15 @@ class Admin::UsersController < ApplicationController
 
   def debug
     # binding.pry
-    session[:admin_id] = params[:user_id]
+    session[:super_user_id] = current_user.id
+    session[:user_id] = params[:user_id]
+    redirect_to movies_path
+  end
+
+  def exit_debug
+    session[:user_id] = session[:super_user_id]
+    session[:super_user_id] = nil
+    redirect_to admin_users_path
   end
 
   def create

@@ -1,0 +1,8 @@
+<h2>Here is the user page</h2>
+
+<%= @user.email %>
+<%= @user.full_name %>
+
+<% @user.reviews.each do |review| %>
+<%= review.inspect %>
+<% end %>
