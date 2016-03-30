@@ -5,11 +5,4 @@
 <hr>
 <h2>Search for a movie</h2>
 <%= render 'search' %>
-<% @movies.each do |movie| %>
-  <h4><%= link_to movie.title, movie_path(movie) %>(<%= link_to "edit", edit_movie_path(movie) %>, <%= link_to "delete", movie_path(movie), :method => :delete, :"data-confirm" => "You sure?" %>)</h4>
-  <p><%= movie.director %></p>
-  <p><%= movie.runtime_in_minutes %></p>
-  <p><%= movie.description %></p>
-  <p><%= movie.poster_image_url %></p>
-  <p><%= movie.release_date %></p>
-<% end %>
+<%= render partial: "movie", collection: @movies %>
