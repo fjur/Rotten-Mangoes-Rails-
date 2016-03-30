@@ -10,6 +10,12 @@ class Admin::UsersController < ApplicationController
     @users = User.all.page(params[:page]).per(2)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
+  end
+
   def check_if_admin
     if !current_user || current_user.admin == 0
       flash[:alert] = "You are not an admin"
