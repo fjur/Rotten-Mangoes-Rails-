@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   # get 'movies/search' => 'movies#'
 
+
+
   root to: 'movies#index'
 
   resources :movies do
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   namespace :admin do
+    get '/users/debug' => 'users#debug'
     resources :users
   end
 

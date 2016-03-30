@@ -11,6 +11,11 @@ class Admin::UsersController < ApplicationController
     @user = User.new
   end
 
+  def debug
+    # binding.pry
+    session[:admin_id] = params[:user_id]
+  end
+
   def create
     @user = User.new(user_params)
     # binding.pry
