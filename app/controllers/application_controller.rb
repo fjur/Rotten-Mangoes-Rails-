@@ -9,15 +9,20 @@ class ApplicationController < ActionController::Base
   #   @admin_user ||= User.find(session[:user_id]) if session[:user_id]
   # end
 
-  def admin_id
-    User.find(session[:admin_id])
+  def preview_mode
+    @preview_user ||= User.find(session[:super_user_id]) if session[:super_user_id]
   end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user
+  def switch_user
+    temp = session
+  end
+
+
+  helper_method :current_user, :preview_mode
 
 
 end

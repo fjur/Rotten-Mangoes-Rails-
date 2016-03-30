@@ -9,4 +9,8 @@
     <% if current_user && current_user.admin %>
       <%= link_to "Admin User Management", admin_users_path %>
     <% end %>
+    <% if preview_mode %>
+    <%= link_to "Exit Preview Mode", admin_users_exit_debug_path %>
+    <% end %>
+
   </footer>
