@@ -19,6 +19,8 @@ class Movie < ActiveRecord::Base
   scope :medium, ->(duration) {where(runtime_in_minutes:  90..120)}
   scope :long, ->(duration) {where("runtime_in_minutes > ?", 120)}
 
+  #active record does not recommend scopes if you pass a parameter
+
   # scope :
 
   def release_date_is_in_the_past
@@ -36,7 +38,7 @@ class Movie < ActiveRecord::Base
   def self.search(search)
     # binding.pry
 
-    if search.count > 4
+    if search.count > 4 # <- Generate a new hash and pass in a key with the two search values, FIX THIS
       # if search[:name]
       #   @movie = Movie.title_search(search[:title])
       #   # @movies = Movie.where("title like ?", "%#{search[:name]}%")
@@ -48,15 +50,16 @@ class Movie < ActiveRecord::Base
       # end
       # @movies = Movie.where("title LIKE ? OR director LIKE ?", "%#{search[:query]}%", "%#{search[:query]}%")
       @movies = Movie.where("title LIKE ? OR director LIKE ?", "%#{search[:query]}%", "%#{search[:query]}%")
+      #Use a hash here
       if search[:duration]
         if search[:duration] == "Under 90 minutes"
-          # @movies = Movie.short(search[:duration])
+          # @movies = @movies.short(search[:duration]) $ <- This works
           @movies = @movies.where("runtime_in_minutes < 90")
         elsif "Between 90 and 120 minutes"
-          # @movies = Movie.medium(search[:duration])
+          # @movies = @movies.medium(search[:duration])
           @movies = @movies.where("runtime_in_minutes < 120 AND runtime_in_minutes > 90")
         else
-          # @movies = Movie.long(search[:duration])
+          # @movies = @movies.long(search[:duration])
           @movies = @movies.where("runtime_in_minutes > 120")
         end  
       end
